@@ -1,0 +1,53 @@
+# Robots.txt for https://tizicloud.blog/
+# 搜索引擎爬虫与 AI 知识引擎抓取策略规则
+
+User-agent: *
+Allow: /
+Disallow: /go/
+Disallow: /api/
+
+# 全球主流搜索引擎爬虫友好放行
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+# 中文主流搜索引擎与移动端专用爬虫
+User-agent: Baiduspider
+Allow: /
+
+# 神马搜索 (UC / 夸克浏览器搜索蜘蛛)
+User-agent: yisouspider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+# 生成式 AI 搜索与知识问答搜索引擎友好开放 (GEO / AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# 官方网站地图索引文件声明
+Sitemap: https://tizicloud.blog/sitemap.xml

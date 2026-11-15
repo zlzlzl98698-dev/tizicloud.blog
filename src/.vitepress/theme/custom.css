@@ -1,0 +1,434 @@
+/* 梯子云 (tizicloud.blog) - 专著级排版美化与 Dark Network Observatory 样式规范 */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #1d4ed8;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.12);
+  
+  --dno-bg: #090e17;
+  --dno-card-bg: #111827;
+  --dno-border: #1f293d;
+  --dno-text-primary: #f9fafb;
+  --dno-text-muted: #9ca3af;
+  --dno-accent: #38bdf8;
+  --dno-green: #10b981;
+  --dno-amber: #f59e0b;
+  --dno-red: #ef4444;
+  
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", Consolas, Monaco, "Courier New", monospace;
+}
+
+/* 页面排版与纵向韵律 (Vertical Rhythm) */
+.VPDoc {
+  font-family: var(--vp-font-family-base);
+  letter-spacing: -0.01em;
+}
+
+.VPDoc p {
+  line-height: 1.85;
+  margin: 1.1rem 0;
+  font-size: 1.02rem;
+  color: var(--vp-c-text-1);
+}
+
+.VPDoc li {
+  line-height: 1.8;
+  font-size: 0.98rem;
+}
+
+/* 标题视觉层级 (Headings Hierarchy) */
+.VPDoc h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--vp-c-text-1) 30%, var(--vp-c-brand-1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.VPDoc h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.VPDoc h2::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 1.35rem;
+  background: linear-gradient(180deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border-radius: 4px;
+  margin-right: 0.75rem;
+}
+
+.VPDoc h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+  color: var(--vp-c-text-1);
+}
+
+/* 品牌头像 Logo 优化（圆角、高质感投影） */
+.VPNavBarTitle .logo {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid var(--vp-c-brand-1);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.45);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.VPNavBarTitle:hover .logo {
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* 彻底解决大表格和代码块挤占右侧侧边栏 TOC (Aside) 重叠问题 */
+.VPDoc .container {
+  min-width: 0 !important;
+}
+
+.VPDoc .content {
+  min-width: 0 !important;
+}
+
+.VPDoc .content-container {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 核心修复：表格强制块级横向独立滚动，坚决杜绝溢出重叠侧边栏 */
+.vp-doc table {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 8px !important;
+  margin: 1.75rem 0 !important;
+  font-size: 0.92rem !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 表格内部滚动条优雅精修 */
+.vp-doc table::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.vp-doc table::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-mute) !important;
+  border-radius: 3px !important;
+}
+
+.vp-doc table::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider) !important;
+  border-radius: 3px !important;
+}
+
+.vp-doc table::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-1) !important;
+}
+
+/* 保证右侧 Aside (TOC) 具备独立 z-index 与清晰边界 */
+.VPDoc .aside {
+  z-index: 10 !important;
+}
+
+.VPDoc .aside-container {
+  background-color: var(--vp-c-bg) !important;
+}
+
+.dark .vp-doc table {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4) !important;
+  background-color: #0b1120 !important;
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-mute) !important;
+  color: var(--vp-c-text-1) !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  padding: 0.85rem 1rem !important;
+  border-bottom: 2px solid var(--vp-c-divider) !important;
+  letter-spacing: 0.02em !important;
+  white-space: nowrap !important;
+}
+
+.vp-doc td {
+  padding: 0.85rem 1rem !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+  line-height: 1.6 !important;
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: none !important;
+}
+
+.vp-doc tr:nth-child(even) td {
+  background-color: rgba(125, 125, 125, 0.03);
+}
+
+.vp-doc tr:hover td {
+  background-color: var(--vp-c-brand-soft) !important;
+}
+
+/* 表格内数字与代码采用等宽字体 */
+.vp-doc td code {
+  font-family: var(--vp-font-family-mono) !important;
+  font-weight: 600 !important;
+  padding: 0.15rem 0.45rem !important;
+  border-radius: 4px !important;
+}
+
+/* 提示卡片优化 (Custom Containers) */
+.custom-block.tip {
+  border-left-width: 4px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(59, 130, 246, 0.08)) !important;
+  box-shadow: 0 4px 18px -4px rgba(37, 99, 235, 0.12) !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.custom-block.info {
+  border-radius: 10px !important;
+  padding: 1.15rem 1.4rem !important;
+}
+
+.custom-block.warning {
+  border-radius: 10px !important;
+  padding: 1.15rem 1.4rem !important;
+}
+
+/* Dark Network Observatory 面板设计 */
+.dno-panel {
+  background-color: var(--dno-bg);
+  border: 1px solid var(--dno-border);
+  border-radius: 12px;
+  padding: 1.65rem;
+  margin: 2.25rem 0;
+  color: var(--dno-text-primary);
+  font-family: var(--vp-font-family-mono);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.dno-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
+}
+
+.dno-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--dno-border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.35rem;
+  font-size: 0.85rem;
+  color: var(--dno-text-muted);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dno-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+  color: #f8fafc;
+  font-size: 1.05rem;
+}
+
+/* 呼吸式运行指示灯 (Live Pulse Dot) */
+.dno-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--dno-green);
+  box-shadow: 0 0 10px var(--dno-green);
+  display: inline-block;
+  animation: pulse-green 2s infinite ease-in-out;
+}
+
+.dno-status-dot.amber {
+  background-color: var(--dno-amber);
+  box-shadow: 0 0 10px var(--dno-amber);
+  animation: pulse-amber 2s infinite ease-in-out;
+}
+
+@keyframes pulse-green {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; box-shadow: 0 0 16px var(--dno-green); }
+}
+
+@keyframes pulse-amber {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; box-shadow: 0 0 16px var(--dno-amber); }
+}
+
+.dno-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.dno-metric-card {
+  background-color: var(--dno-card-bg);
+  border: 1px solid var(--dno-border);
+  border-radius: 9px;
+  padding: 1.15rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.dno-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+}
+
+.dno-metric-label {
+  font-size: 0.75rem;
+  color: var(--dno-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+
+.dno-metric-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #38bdf8;
+  font-family: var(--vp-font-family-mono);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.45rem;
+}
+
+.dno-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+}
+
+.dno-badge.success {
+  background-color: rgba(16, 185, 129, 0.14);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.32);
+}
+
+.dno-badge.warning {
+  background-color: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.32);
+}
+
+/* ASCII 架构图与终端代码块美化 (Terminal Style Pre) */
+.vp-doc pre {
+  border: 1px solid var(--dno-border) !important;
+  border-radius: 10px !important;
+  background-color: #0b1120 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4) !important;
+  position: relative !important;
+  padding-top: 2rem !important;
+}
+
+.vp-doc pre::before {
+  content: "●  ●  ●";
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.35rem;
+  color: #475569;
+}
+
+/* 商业转化引导卡片 (Conversion Cards) */
+.conversion-card {
+  border: 1.5px solid var(--vp-c-brand-1);
+  border-radius: 14px;
+  padding: 1.85rem;
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.03), rgba(59, 130, 246, 0.08));
+  margin: 2.25rem 0;
+  box-shadow: 0 6px 24px -4px rgba(37, 99, 235, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.conversion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -4px rgba(37, 99, 235, 0.22);
+}
+
+.conversion-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.75rem 1.85rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+}
+
+.conversion-btn:hover {
+  background: linear-gradient(135deg, var(--vp-c-brand-3), var(--vp-c-brand-1));
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.aff-disclaimer {
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.85rem;
+  line-height: 1.6;
+}
+
+/* 针对 375px / 414px 移动端细节微调 */
+@media (max-width: 640px) {
+  .VPDoc h1 {
+    font-size: 1.75rem;
+  }
+  .VPDoc h2 {
+    font-size: 1.35rem;
+  }
+  .dno-panel {
+    padding: 1.2rem;
+  }
+  .dno-metric-value {
+    font-size: 1.4rem;
+  }
+  .conversion-card {
+    padding: 1.35rem;
+  }
+}
